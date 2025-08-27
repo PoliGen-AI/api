@@ -1,0 +1,41 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: api_mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: api_dart_db
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+    networks:
+      - api_network
+
+  app:
+    build: .
+    container_name: api_dart_app
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO_URL: mongodb://admin:password123@mongodb:27017/api_dart_db?authSource=admin
+      JWT_SECRET: your-super-secret-jwt-key-change-this-in-production
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+      PRODUCTION: "false"
+    depends_on:
+      - mongodb
+    networks:
+      - api_network
+
+volumes:
+  mongodb_data:
+  mongodb_config:
+
+
+networks:
+  api_network:
+    driver: bridge
