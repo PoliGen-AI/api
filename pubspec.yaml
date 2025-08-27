@@ -10,7 +10,9 @@ environment:
 dependencies:
   crypto: ^3.0.6
   dart_jsonwebtoken: ^3.2.0
+  google_generative_ai: ^0.4.0
   image: ^4.5.4
+  mongo_dart: ^0.10.0
   path: ^1.9.1
   shelf: ^1.4.2
   shelf_cors_headers: ^0.1.5
