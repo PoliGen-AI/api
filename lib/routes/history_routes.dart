@@ -3,13 +3,13 @@ import 'dart:convert';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
-import 'package:api_dart/storage/json_store.dart';
+import 'package:api_dart/storage/mongodb_store.dart';
 import 'package:api_dart/util/auth_middleware.dart';
 
 class HistoryRoutes {
-  HistoryRoutes() : _store = JsonStore();
+  HistoryRoutes() : _store = MongoDBStore();
 
-  final JsonStore _store;
+  final MongoDBStore _store;
 
   Router get router {
     final Router r = Router();
