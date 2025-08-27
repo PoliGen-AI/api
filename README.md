@@ -50,51 +50,6 @@ docker-compose up --build
 ./debug_auth.sh
 ```
 
-## 🐛 **Debugging Authentication Issues**
-
-If you're experiencing authentication problems, use the debug endpoints:
-
-### **1. Debug Endpoint - Check cookie parsing**
-```bash
-curl -X GET http://localhost:8080/auth/debug -b cookies.txt
-```
-
-### **2. Test Auth Endpoint - Check JWT verification**
-```bash
-curl -X GET http://localhost:8080/auth/test-auth -b cookies.txt
-```
-
-### **3. User Info Endpoint - Test authentication**
-```bash
-curl -X GET http://localhost:8080/auth/me -b cookies.txt
-```
-
-### **4. Run the Debug Script**
-```bash
-# Make executable and run
-chmod +x debug_auth.sh
-./debug_auth.sh
-```
-
-## 🔧 **Recent Fixes Applied**
-
-### **Fixed JSON Serialization Issues**
-- **Problem**: `Converting object to an encodable object failed: Instance of '_HttpConnectionInfo'`
-- **Solution**: Added safe JWT payload serialization in test endpoints
-
-### **Fixed MongoDB BsonBinary Type Issues**
-- **Problem**: `type 'BsonBinary' is not a subtype of type 'Uint8List'`
-- **Solution**: Added proper handling for MongoDB binary data types in image retrieval
-
-### **Enhanced Cookie Parsing**
-- Improved cookie extraction logic to handle complex cookie values
-- Added better error handling and debugging output
-
-### **Added Comprehensive Debugging**
-- Debug endpoints for troubleshooting authentication
-- Safe JSON serialization with fallback responses
-- Detailed logging for all authentication steps
-
 ## Traditional Run (without Docker)
 
 ### Run
